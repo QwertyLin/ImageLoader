@@ -3,6 +3,7 @@ package a1;
 import a2.DisplayImageOptions;
 import a2.ImageLoader;
 import a2.ImageLoaderConfiguration;
+import a2.ImageLoadingListener;
 import a2.Md5FileNameGenerator;
 import android.content.Context;
 import android.widget.ImageView;
@@ -47,6 +48,10 @@ public class ImageLoaderHelper {
 	
 	public void set(String uri, ImageView imageView){
 		ImageLoader.getInstance().displayImage(uri, imageView, mOptions);
+	}
+	
+	public void load(Context ctx, String uri, ImageLoadingListener listener){
+		ImageLoader.getInstance().loadImage(ctx, uri, listener);
 	}
 	
 	public void stop(){
