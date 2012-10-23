@@ -38,6 +38,7 @@ public class ImageLoaderHelper {
 			.memoryCacheSize(1500000) // 1.5 Mb
 			.denyCacheImageMultipleSizesInMemory()
 			.discCacheFileNameGenerator(new Md5FileNameGenerator())
+			//.discCache(new UnlimitedDiscCache(FileMgr.getInstance(ctx).getHome()))//自定义缓存目录
 			//.enableLogging() // Not necessary in common
 			.build();
 			ImageLoader.getInstance().init(config);
@@ -50,11 +51,15 @@ public class ImageLoaderHelper {
 		ImageLoader.getInstance().displayImage(uri, imageView, mOptions);
 	}
 	
-	public void load(Context ctx, String uri, ImageLoadingListener listener){
+	public static void load(Context ctx, String uri, ImageLoadingListener listener){
 		ImageLoader.getInstance().loadImage(ctx, uri, listener);
 	}
 	
-	public void stop(){
+	public static boolean check(Context ctx, String uri){
+		return ImageLoader.getInstance().getDiscCache().get(uri).exists();
+	}
+	
+	public static void stop(){
 		ImageLoader.getInstance().stop();
 	}
 
