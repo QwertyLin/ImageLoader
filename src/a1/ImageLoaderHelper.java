@@ -51,11 +51,11 @@ public class ImageLoaderHelper {
 		ImageLoader.getInstance().displayImage(uri, imageView, mOptions);
 	}
 	
-	public static void load(Context ctx, String uri, ImageLoadingListener listener){
-		ImageLoader.getInstance().loadImage(ctx, uri, listener);
+	public void load(Context ctx, String uri, ImageLoadingListener listener){
+		ImageLoader.getInstance().loadImage(ctx, uri, mOptions, listener);
 	}
 	
-	public static boolean check(Context ctx, String uri){
+	public static boolean checkCache(Context ctx, String uri){
 		return ImageLoader.getInstance().getDiscCache().get(uri).exists();
 	}
 	
